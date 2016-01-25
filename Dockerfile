@@ -7,7 +7,7 @@ MAINTAINER kerwindena
 RUN apt-get update && apt-get install -y \
     ssh \
     weechat \
-    tmux \
+    tmux
 
 ## Configure the container
 
