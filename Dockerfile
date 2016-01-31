@@ -29,9 +29,6 @@ RUN usermod -p '*' weechat
 ADD login.sh /home/weechat/
 ADD config.txt /home/weechat/
 
-# Configure Tor
-RUN useradd -m -d /home/tor -s /bin/false tor
-
 ## Populate the volume
 
 # Add authorized_keys placeholder
@@ -42,6 +39,11 @@ RUN ln -s /data/authorized_keys /home/weechat/.ssh/
 # Configure Tmux
 ADD tmux.conf /data/
 RUN ln -s /data/tmux.conf /home/weechat/.tmux.conf
+
+# Make Weechat configuration persistent
+RUN mkdir /data/weechat
+RUN chown -R weechat:weechat /data/weechat
+RUN ln -s /data/weechat /home/weechat/.weechat
 
 ## Final steps
 
