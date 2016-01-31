@@ -5,6 +5,7 @@ MAINTAINER kerwindena
 ## Install all the Packages
 
 RUN apt-get update && apt-get install -y \
+    --no-install-recommends \
     ssh \
     weechat \
     tmux
