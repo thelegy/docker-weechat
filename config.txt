@@ -1,0 +1,1 @@
+/proxy add tor socks5 127.0.0.1 9050
