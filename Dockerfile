@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     ssh \
     weechat \
-    tmux
+    tmux \
+    tor
 
 ## Configure the container
 
@@ -29,6 +30,9 @@ RUN usermod -p '*' weechat
 # Add files not to be changed by the end user
 ADD login.sh /home/weechat/
 ADD config.txt /home/weechat/
+
+# Add startup script
+ADD startup.sh /usr/sbin/
 
 ## Populate the volume
 
@@ -55,4 +59,4 @@ VOLUME ["/data"]
 EXPOSE 22
 
 # Startup preocedure
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/bin/sh", "/usr/sbin/startup.sh"]
