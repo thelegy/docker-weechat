@@ -1,4 +1,4 @@
 #!/bin/sh
-/usr/bin/tor &
+su -c /usr/bin/tor tor &
 
 /usr/sbin/sshd -D

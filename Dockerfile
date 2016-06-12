@@ -27,6 +27,9 @@ RUN mkdir /data
 RUN useradd -m -d /home/weechat -s /home/weechat/login.sh weechat
 RUN usermod -p '*' weechat
 
+# Add tor user
+RUN useradd --create-home tor
+
 # Add files not to be changed by the end user
 ADD login.sh /home/weechat/
 ADD config.txt /home/weechat/
