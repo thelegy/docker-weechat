@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     ssh \
     weechat \
+    weechat-plugins \
+    weechat-scripts \
     tmux \
     tor
 
