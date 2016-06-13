@@ -24,6 +24,5 @@ The Tor daemon is running with its default configuration. This means, it is conf
 
 ### How do I route a connection through the tor network? ###
 
-WeeChat should have a tor-proxy configured by default in this container.
-You can verify this with `/proxy list`. If it is missing, please issue a bug and recreate it with `/proxy add tor socks5 127.0.0.1 9050`.
+WeeChat should have a tor-proxy configured by default in this container. You can verify this with `/proxy list`. If it is missing, please issue a bug and recreate it with `/proxy add tor socks5 127.0.0.1 9050`.
 You can activate the tor proxy on a per-server basis by simply using `/set irc.server.<servername>.proxy tor` replaceing `<servername>` with the configured name of the server.
