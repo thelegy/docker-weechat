@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     tor
 
 # Install all languages
-echo -e "1\n2"|dpkg-reconfigure -freadline locales
+RUN echo -e "1\n2"|dpkg-reconfigure -freadline locales
 
 ## Configure the container
 
