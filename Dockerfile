@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
     tmux \
     tor
 
-# Install all languages
-RUN (echo 1; echo 2) | dpkg-reconfigure -fteletype locales
+# Install english language
+RUN (echo 146; echo 2) | dpkg-reconfigure -fteletype locales
 
 ## Configure the container
 
