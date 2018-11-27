@@ -15,13 +15,14 @@ RUN apt-get update && apt-get install -y \
     tor
 
 # Install english language
-RUN (echo 146; echo 2) | dpkg-reconfigure -fteletype locales
+RUN sed -ir 's/^(# )?(en_US.+)( UTF-8)$/\2\3/' /etc/locale.gen \
+ && locale-gen
 
 ## Configure the container
 
 # Fix sshd for priviliege separation
-RUN mkdir /var/run/sshd
-RUN chmod 700 /var/run
+RUN mkdir /var/run/sshd \
+ && chmod 700 /var/run
 
 # Configure ssh
 ADD sshd_config /etc/ssh/
@@ -30,8 +31,8 @@ ADD sshd_config /etc/ssh/
 RUN mkdir /data
 
 # Configure Weechat
-RUN useradd -m -d /home/weechat -s /home/weechat/login.sh weechat
-RUN usermod -p '*' weechat
+RUN useradd -m -d /home/weechat -s /home/weechat/login.sh weechat \
+ && usermod -p '*' weechat
 
 # Add tor user
 RUN useradd --create-home tor
@@ -46,18 +47,18 @@ ADD startup.sh /usr/sbin/
 ## Populate the volume
 
 # Add authorized_keys placeholder
-RUN mkdir /home/weechat/.ssh
-RUN touch /data/authorized_keys
-RUN ln -s /data/authorized_keys /home/weechat/.ssh/
+RUN mkdir /home/weechat/.ssh \
+ && touch /data/authorized_keys \
+ && ln -s /data/authorized_keys /home/weechat/.ssh/
 
 # Configure Tmux
 ADD tmux.conf /data/
 RUN ln -s /data/tmux.conf /home/weechat/.tmux.conf
 
 # Make Weechat configuration persistent
-RUN mkdir /data/weechat
-RUN chown -R weechat:weechat /data/weechat
-RUN ln -s /data/weechat /home/weechat/.weechat
+RUN mkdir /data/weechat \
+ && chown -R weechat:weechat /data/weechat \
+ && ln -s /data/weechat /home/weechat/.weechat
 
 ## Final steps
 
