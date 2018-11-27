@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     tor
 
 # Install english language
-RUN sed -ir 's/^(# )?(en_US)(.+)( UTF-8)$/\\2\\3\\4/' /etc/locale.gen \
+RUN sed -ri 's/^(# )?(en_US)(.+)( UTF-8)$/\2\3\4/' /etc/locale.gen \
  && locale-gen
 
 ## Configure the container
